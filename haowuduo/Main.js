@@ -34,7 +34,7 @@ const Main = createBottomTabNavigator({
             backgroundColor: '#fff', // TabBar 背景色
         },
         labelStyle: {
-            fontSize: 12, // 文字大小
+            fontSize: 10, // 文字大小
         },
     },
 });

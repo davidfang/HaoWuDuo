@@ -17,12 +17,12 @@ export default class MinePage extends Component {
         tabBarIcon: ({focused}) => {
             if (focused) {
                 return (
-                    <Image style={{height: 20, width: 20}}
+                    <Image style={{height: 25, width: 25}}
                           source={require('./images/tab_home_select.png')}/>
                 );
             }
             return (
-                <Image style={{height: 20, width: 20}}
+                <Image style={{height: 25, width: 25}}
                           source={require('./images/tab_home_unselect.png')}/>
             );
         },

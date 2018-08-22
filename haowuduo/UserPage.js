@@ -8,12 +8,12 @@ export default class UserPage extends Component{
         tabBarIcon: ({focused}) => {
             if (focused) {
                 return (
-                    <Image style={{height: 20, width: 20}}
+                    <Image style={{height: 25, width: 25}}
                           source={require('./images/tab_mine_select.png')}/>
                 );
             }
             return (
-                <Image style={{height: 20, width: 20}}
+                <Image style={{height: 25, width: 25}}
                           source={require('./images/tab_mine_unselect.png')}/>
             );
         },
@@ -21,7 +21,13 @@ export default class UserPage extends Component{
     render (){
         return (
             <View style={userStyle.viewStyle}>
-        
+                <ImageBackground style={userStyle.topStyle} source={require('./images/my_header_bg.png')}>
+                    <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:10}}>
+                        <Text style={{justifyContent:'center',color:"#fff"}}>个人中心</Text>
+                        <Image style={{width:15,height:15,marginRight:15}} source={require('./images/ic_setting.png')}></Image>
+                        <Image style={{width:15,height:15,marginRight:15}} source={require('./images/home_info.png')}></Image>
+                    </View>
+                </ImageBackground>
             </View>
         );
     }
@@ -30,5 +36,12 @@ const userStyle = StyleSheet.create({
     viewStyle:{
         flex:1,
         flexDirection: 'column',
+    },
+    topStyle:{
+        width:Dimensions.get('window').width,
+        height:224,
+    },
+    titleStyle:{
+        
     }
 });
