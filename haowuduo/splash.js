@@ -4,7 +4,6 @@ import {Image,Dimensions,StyleSheet} from 'react-native';
 export default class Splash extends Component{
     render (){
         return (
-            console.log("屏幕宽度为:"+Dimensions.get('window').width),
            <Image style={splashStyle.imageStyle} source={require('./images/app_splash.png')}></Image>
         );
     }

@@ -21,7 +21,7 @@ export default class Category extends Component{
     render (){
         return (
             <Button onPress={() => {
-
+                this.props.navigation.navigate('Login');
               }}
               title="点击跳转"/>
         );

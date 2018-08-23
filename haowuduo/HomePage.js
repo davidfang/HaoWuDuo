@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import {
-    AppRegistry,
     StyleSheet,
-    Text,
     Image,
     View,
     TextInput,
-    Button,
     Dimensions,
-    TouchableOpacity
 } from 'react-native';
 import ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-view'
 
@@ -23,7 +19,6 @@ export default class MinePage extends Component {
             label: ['推荐', '新品', '居家', '餐厨', '配件', '服装', '电器', '洗护', '杂货', '饮食', '婴童', '志趣'],
         };
     }
-
 
     // 此处设置 Tab 的名称和一些样式，这里的会覆盖掉配置路由文件的样式，下面会讲
     static navigationOptions = {

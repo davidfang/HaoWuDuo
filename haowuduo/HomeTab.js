@@ -3,8 +3,6 @@ import {View,Text,StyleSheet,Dimensions,Image} from 'react-native';
 import Swiper from 'react-native-swiper'
 
 export default class HomeTab extends Component{
-
-
     render (){
         return (
         <View style={{height:200}}>
