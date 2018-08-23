@@ -10,6 +10,7 @@ import ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-vi
 
 import Detailpage from './DetailPage';
 import HomeTab from './HomeTab';
+import {getFetchNeverCached} from './ApiHelper';
 
 export default class MinePage extends Component {
 
@@ -36,6 +37,10 @@ export default class MinePage extends Component {
             );
         },
     };
+    componentWillMount = () => {
+        getMoviesFromApiAsync();
+    };
+    
     render() {
         const { navigate } = this.props.navigation;
         let label = this.state.label
@@ -61,7 +66,9 @@ export default class MinePage extends Component {
         );
     }
 }
-
+function getMoviesFromApiAsync() {
+    getFetchNeverCached("/movie/10/story/1/0");
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,
