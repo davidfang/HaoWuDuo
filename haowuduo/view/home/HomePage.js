@@ -10,7 +10,7 @@ import ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-vi
 
 import Detailpage from './DetailPage';
 import HomeTab from './HomeTab';
-import {getFetchNeverCached} from './ApiHelper';
+import {getFetchNeverCached} from '../../http/ApiHelper';
 
 export default class MinePage extends Component {
 
@@ -28,12 +28,12 @@ export default class MinePage extends Component {
             if (focused) {
                 return (
                     <Image style={{height: 25, width: 25}}
-                          source={require('./images/tab_home_select.png')}/>
+                          source={require('../../images/tab_home_select.png')}/>
                 );
             }
             return (
                 <Image style={{height: 25, width: 25}}
-                          source={require('./images/tab_home_unselect.png')}/>
+                          source={require('../../images/tab_home_unselect.png')}/>
             );
         },
     };

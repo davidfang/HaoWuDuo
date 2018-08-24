@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View,Button,Image,Text,StyleSheet,Dimensions,ImageBackground,TouchableNativeFeedback} from 'react-native';
 import {StackNavigator, TabBarBottom, TabNavigator} from "react-navigation"
-import {scaleSize} from './utils/ScreenUtil';
+import {scaleSize} from '../../utils/ScreenUtil';
 
 
 export default class UserPage extends Component{
@@ -12,12 +12,12 @@ export default class UserPage extends Component{
             if (focused) {
                 return (
                     <Image style={{height: 25, width: 25}}
-                          source={require('./images/tab_mine_select.png')}/>
+                          source={require('../../images/tab_mine_select.png')}/>
                 );
             }
             return (
                 <Image style={{height: 25, width: 25}}
-                          source={require('./images/tab_mine_unselect.png')}/>
+                          source={require('../../images/tab_mine_unselect.png')}/>
             );
         },
     };
@@ -26,18 +26,18 @@ export default class UserPage extends Component{
         console.log("宽度="+Dimensions.get('screen').width+";高度="+Dimensions.get('screen').height);
         return (
             <View style={userStyle.viewStyle}>
-                <ImageBackground style={userStyle.topStyle} source={require('./images/my_header_bg.png')}>
+                <ImageBackground style={userStyle.topStyle} source={require('../../images/my_header_bg.png')}>
                     <View style={{flexDirection:'row',justifyContent:'center',marginTop:scaleSize(30),alignItems:'center',position:'relative'}}>
                         <View style={{flex:1}}></View>
                         <Text style={{flex:1,color:"#fff",fontSize:20,justifyContent:'center',textAlign:'center'}}>个人中心</Text>
                         <View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
-                            <Image style={{width:scaleSize(34),height:scaleSize(34),marginRight:15}} source={require('./images/ic_setting.png')}></Image>
-                            <Image style={{width:scaleSize(34),height:scaleSize(34),marginRight:15}} source={require('./images/home_info.png')}></Image>
+                            <Image style={{width:scaleSize(34),height:scaleSize(34),marginRight:15}} source={require('../../images/ic_setting.png')}></Image>
+                            <Image style={{width:scaleSize(34),height:scaleSize(34),marginRight:15}} source={require('../../images/home_info.png')}></Image>
                         </View>
                     </View>
                     <View style={{flexDirection:'row',marginTop:30,paddingLeft:15,paddingRight:15,alignItems:'center'}}>
                         <TouchableNativeFeedback onPress={this.avatorClick}>
-                            <Image style={{width:scaleSize(97),height:scaleSize(97)}} source={require('./images/ic_devault_head.png') } ></Image>
+                            <Image style={{width:scaleSize(97),height:scaleSize(97)}} source={require('../../images/ic_devault_head.png') } ></Image>
                         </TouchableNativeFeedback>
                         <View style={{marginLeft: 10,}}>
                             <Text style={{color:'white'}}>185****3432</Text>

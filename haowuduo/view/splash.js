@@ -4,7 +4,7 @@ import {Image,Dimensions,StyleSheet} from 'react-native';
 export default class Splash extends Component{
     render (){
         return (
-           <Image style={splashStyle.imageStyle} source={require('./images/app_splash.png')}></Image>
+           <Image style={splashStyle.imageStyle} source={require('../images/app_splash.png')}></Image>
         );
     }
     componentDidMount(){

@@ -5,7 +5,7 @@ import Splash from './splash'
 import Main from './Main';
 import Login from './login';
 import Register from './register';
-import DetailPage from './DetailPage';     // 详情页
+import DetailPage from './home/DetailPage';     // 详情页
 // 注册tabs
 
 

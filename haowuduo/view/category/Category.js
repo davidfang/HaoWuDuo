@@ -9,12 +9,12 @@ export default class Category extends Component{
             if (focused) {
                 return (
                     <Image style={{height: 25, width: 25}}
-                          source={require('./images/tab_type_select.png')}/>
+                          source={require('../../images/tab_type_select.png')}/>
                 );
             }
             return (
                 <Image style={{height: 25, width: 25}}
-                          source={require('./images/tab_type_unselect.png')}/>
+                          source={require('../../images/tab_type_unselect.png')}/>
             );
         },
     };

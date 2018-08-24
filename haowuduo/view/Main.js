@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {createBottomTabNavigator} from 'react-navigation';
 
-import HomePage from './HomePage';
-import FindPage from './Category';
-import UserPage from './UserPage';
+import HomePage from './home/HomePage';
+import FindPage from './category/Category';
+import UserPage from './user/UserPage';
 
 const Main = createBottomTabNavigator({
     Home: {

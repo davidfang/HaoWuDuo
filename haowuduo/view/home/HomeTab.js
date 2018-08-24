@@ -15,9 +15,9 @@ export default class HomeTab extends Component{
                 loop={true}
                 autoplay={true}
                 autoplayTimeout={3}>
-                <Image source={require('./images/mine_banner.png')} style={styles.img}/>
-                <Image source={require('./images/mine_banner.png')} style={styles.img}/>
-                <Image source={require('./images/mine_banner.png')} style={styles.img}/>
+                <Image source={require('../../images/mine_banner.png')} style={styles.img}/>
+                <Image source={require('../../images/mine_banner.png')} style={styles.img}/>
+                <Image source={require('../../images/mine_banner.png')} style={styles.img}/>
             </Swiper>
         </View>
         );

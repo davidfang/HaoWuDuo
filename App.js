@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import MyNavigator from './haowuduo/MyNavigator'
+import MyNavigator from './haowuduo/view/MyNavigator'
 
 export default class App extends Component{
   render(){
