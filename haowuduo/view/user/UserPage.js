@@ -3,8 +3,12 @@ import {View,Button,Image,Text,StyleSheet,Dimensions,ImageBackground,TouchableNa
 import {StackNavigator, TabBarBottom, TabNavigator} from "react-navigation"
 import {scaleSize} from '../../utils/ScreenUtil';
 
+import {normalStyle} from '../NormalStyle';
+
+const blackColor= "#282828";
 
 export default class UserPage extends Component{
+
     // 此处设置 Tab 的名称和一些样式，这里的会覆盖掉配置路由文件的样式，下面会讲
     static navigationOptions = {
         tabBarLabel: '我的',
@@ -61,6 +65,31 @@ export default class UserPage extends Component{
                     <View style={{flex:1,flexDirection:'column',justifyContent:'center',alignSelf:'center'}}>
                         <Text style={{color:'red',fontSize:20,alignSelf:'center'}}>0</Text>
                         <Text style={{color:'black',fontSize:14,alignSelf:'center'}}>我的积分(个)</Text>
+                    </View>
+                </View>
+                <View style={{backgroundColor:'#fff',marginTop:scaleSize(30),paddingLeft:scaleSize(30),paddingRight:scaleSize(30)}}>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',height:scaleSize(88),alignItems:'center'}}>
+                        <Text style={normalStyle.blackText}>我的订单</Text>
+                        <Text style={{color:'#C7C7C7'}}>查看全部 ></Text>
+                    </View>
+                    <View style={normalStyle.lineStyle}></View>
+                    <View style={{flexDirection:'row',height:scaleSize(150),justifyContent:'space-between',alignItems:'center'}}>
+                        <View style={{flex:1,justifyContent:'center'}}>
+                            <Image style={{width:scaleSize(42),height:scaleSize(40),alignSelf:'center'}} source={require('../../images/ic_order_all.png')}></Image>
+                            <Text style={{color:blackColor,marginTop:scaleSize(5),alignSelf:'center'}}>全部</Text>
+                        </View>
+                        <View style={{flex:1,justifyContent:'center'}}>
+                            <Image style={{width:scaleSize(42),height:scaleSize(40),alignSelf:'center'}} source={require('../../images/ic_order_pay.png')}></Image>
+                            <Text style={{color:blackColor,marginTop:scaleSize(5),alignSelf:'center'}}>已付款</Text>
+                        </View>
+                        <View style={{flex:1,justifyContent:'center'}}>
+                            <Image style={{width:scaleSize(42),height:scaleSize(40),alignSelf:'center'}} source={require('../../images/ic_order_completed.png')}></Image>
+                            <Text style={{color:blackColor,marginTop:scaleSize(5),alignSelf:'center'}}>已完成</Text>
+                        </View>
+                        <View style={{flex:1,justifyContent:'center'}}>
+                            <Image style={{width:scaleSize(42),height:scaleSize(40),alignSelf:'center'}} source={require('../../images/ic_order_refund.png')}></Image>
+                            <Text style={{color:blackColor,marginTop:scaleSize(5),alignSelf:'center'}}>退款</Text>
+                        </View>
                     </View>
                 </View>
             </View>
