@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-view'
 
-import Detailpage from './DetailPage';
 import HomeTab from './HomeTab';
 import {getFetchNeverCached} from '../../http/ApiHelper';
 

@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 import {View,Button,Image,Text,StyleSheet,Dimensions,ImageBackground,TouchableNativeFeedback} from 'react-native';
-import {StackNavigator, TabBarBottom, TabNavigator} from "react-navigation"
 import {scaleSize} from '../../utils/ScreenUtil';
 
 import {normalStyle} from '../NormalStyle';
 
 const blackColor= "#282828";
 
+var navigation = null;
 export default class UserPage extends Component{
+
+    constructor(props){
+        super(props);
+        navigation = this.props.navigation;
+    }
 
     // 此处设置 Tab 的名称和一些样式，这里的会覆盖掉配置路由文件的样式，下面会讲
     static navigationOptions = {
@@ -35,12 +40,14 @@ export default class UserPage extends Component{
                         <View style={{flex:1}}></View>
                         <Text style={{flex:1,color:"#fff",fontSize:20,justifyContent:'center',textAlign:'center'}}>个人中心</Text>
                         <View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
+                        <TouchableNativeFeedback onPress = {this.settingClick}>
                             <Image style={{width:scaleSize(34),height:scaleSize(34),marginRight:15}} source={require('../../images/ic_setting.png')}></Image>
+                        </TouchableNativeFeedback>
                             <Image style={{width:scaleSize(34),height:scaleSize(34),marginRight:15}} source={require('../../images/home_info.png')}></Image>
                         </View>
                     </View>
                     <View style={{flexDirection:'row',marginTop:30,paddingLeft:15,paddingRight:15,alignItems:'center'}}>
-                        <TouchableNativeFeedback onPress={this.avatorClick}>
+                        <TouchableNativeFeedback onPress={this.avatorClick }>
                             <Image style={{width:scaleSize(97),height:scaleSize(97)}} source={require('../../images/ic_devault_head.png') } ></Image>
                         </TouchableNativeFeedback>
                         <View style={{marginLeft: 10,}}>
@@ -95,7 +102,11 @@ export default class UserPage extends Component{
             </View>
         );
     }
+    settingClick(){
+        navigation.navigate('Setting');
+    }
     avatorClick(params) {
+        navigation.navigate("Login")
         console.log('您点击了头像...');
     }
 }
