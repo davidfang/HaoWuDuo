@@ -3,6 +3,7 @@ import {Image,TextInput,View,Button,Text} from 'react-native';
 
 import {scaleSize} from '../../utils/ScreenUtil';
 import {normalStyle} from '../NormalStyle';
+import {post} from '../../http/ApiHelper';
 
 export default class Register extends Component{
     static navigationOptions={
@@ -29,11 +30,15 @@ export default class Register extends Component{
                     <View style={normalStyle.lineStyle}></View>
                     <View style={{marginTop:scaleSize(60)}}>
                     <Button title='确定' onPress={()=>{
-                        this.props.navigation.navigate('RegisterPassword');
+                        this.register();
                     }}></Button>
                     <Text style={{marginTop:scaleSize(10)}}>注册代表您已同意《好物多注册协议》</Text>
                     </View>
                 </View>
             </View>
         )};
+    register(){
+        var jsonData = {"phone":"18575683432","password":"xiaofei529","submitCode":"124124"}
+        post("user/reg",jsonData);
+    }
 }

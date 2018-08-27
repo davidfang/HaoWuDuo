@@ -4,7 +4,7 @@
 
 import apiCache from './ApiCache'
 
-const baseUrl = 'http://v3.wufazhuce.com:8000/api';
+const baseUrl = 'http://q1.xitouwang.com/api/';
 
 const showLog = __DEV__;
 
@@ -89,6 +89,7 @@ const loggerWrap = requestInfo => fetchFunc => {
 };
 
 const convertRespToJson = response => {
+  console.log('the json is '+response.json());
   return response.json();
 };
 

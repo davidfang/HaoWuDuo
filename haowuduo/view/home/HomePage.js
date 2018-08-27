@@ -66,7 +66,7 @@ export default class MinePage extends Component {
     }
 }
 function getMoviesFromApiAsync() {
-    getFetchNeverCached("/movie/10/story/1/0");
+    getFetchNeverCached("products/planPlus");
 }
 const styles = StyleSheet.create({
     container: {
