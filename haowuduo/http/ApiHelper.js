@@ -89,18 +89,12 @@ const loggerWrap = requestInfo => fetchFunc => {
 };
 
 const convertRespToJson = response => {
-  console.log('the json is '+response.json());
   return response.json();
 };
 
 const defaultAnalyse = response => {
-  console.log('the data is '+response.movies);
-  if (response.res === 0) {
-    return response.movies;
-  } else {
-    console.warn(response.msg);
-    throw response.msg;
-  }
+  console.log('the data is '+response.data);
+  console.log('the data1 is '+response.data[1].title)
 };
 
 export const getFetchFromCache = get(true);//缓存
