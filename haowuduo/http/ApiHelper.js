@@ -93,8 +93,8 @@ const convertRespToJson = response => {
 };
 
 const defaultAnalyse = response => {
-  console.log('the data is '+response.data);
-  console.log('the data1 is '+response.data[1].title)
+  
+  return response.data;
 };
 
 export const getFetchFromCache = get(true);//缓存

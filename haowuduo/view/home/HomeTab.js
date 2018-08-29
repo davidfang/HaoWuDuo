@@ -5,13 +5,18 @@ import {scaleSize} from '../../utils/ScreenUtil'
 
 import {getFetchNeverCached} from '../../http/ApiHelper';
 
-const listData = null;
-
 export default class HomeTab extends Component{
-    componentWillMount(){
-       getFetchNeverCached("products/planPlus").then(jsonData=>{
-            console.log('the jsonData is '+jsonData);
-            console.log('the jsonData is '+jsonData[1].title)
+    constructor(props){
+        super(props)
+        this.state={
+            listData:null,
+        }
+    }
+    componentDidMount(){
+       getFetchNeverCached("products/planPlus").then(data=>{
+           this.setState({
+               listData:data
+           })
         });
     }
     render (){
@@ -32,7 +37,7 @@ export default class HomeTab extends Component{
                     <Image source={require('../../images/mine_banner.png')} style={styles.img}/>
                 </Swiper>
             </View>
-            <FlatList data={listData}
+            <FlatList data={this.state.listData}
                        renderItem={({item}) => <View>
                            <Image style={{width:scaleSize(150),height:scaleSize(150)}} source={require('../../images/ic_xd_shop.png')}></Image>
                        </View>}></FlatList>
