@@ -32,7 +32,7 @@ const postFetch = url => jsonData => {
     method: 'POST',
     headers: {
       Accept: '*/*',
-      'Content-Type': 'application/json'
+      'Content-Type': 'multipart/form-data'
     },
     body: jsonData
   }).then(convertRespToJson).then(defaultAnalyse);
@@ -63,10 +63,11 @@ const get = cached => (path, data) => {
  * @param path 相对路径
  */
 export const post = path => data => {
-  var jsonData = JSON.stringify(data);
+  // var jsonData = JSON.stringify(data);
   var url = baseUrl + path;
-  return loggerWrap(`POST  ${url}  ${jsonData}`)(() => {
-    return postFetch(url)(jsonData);
+  // console.log('the url is '+url+";the jsonData is "+jsonData)
+  return loggerWrap(`POST  ${url}  ${data}`)(() => {
+    return postFetch(url)(data);
   });
 };
 
@@ -93,8 +94,10 @@ const convertRespToJson = response => {
 };
 
 const defaultAnalyse = response => {
-  
-  return response.data;
+  if(response.data){
+    return response.data;
+  }
+  return response;
 };
 
 export const getFetchFromCache = get(true);//缓存
