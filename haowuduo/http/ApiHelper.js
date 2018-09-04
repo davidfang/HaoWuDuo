@@ -4,7 +4,7 @@
 
 import apiCache from './ApiCache'
 
-const baseUrl = 'http://q1.xitouwang.com/api/';
+const baseUrl = 'http://127.0.0.1:8000/';
 
 const showLog = __DEV__;
 

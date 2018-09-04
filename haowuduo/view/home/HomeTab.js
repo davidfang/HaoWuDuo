@@ -13,7 +13,7 @@ export default class HomeTab extends Component{
         }
     }
     componentDidMount(){
-       getFetchNeverCached("products/planPlus").then(data=>{
+       getFetchNeverCached("product/getBannerList").then(data=>{
            this.setState({
                listData:data
            })
@@ -40,7 +40,7 @@ export default class HomeTab extends Component{
             <FlatList data={this.state.listData}
                        renderItem={({item}) => <View>
                            <Image style={{width:scaleSize(150),height:scaleSize(150)}} source={require('../../images/ic_xd_shop.png')}></Image>
-                           <Text>{item.title}</Text>
+                           <Text>{item.description}</Text>
                        </View>}></FlatList>
         </View>
         );
