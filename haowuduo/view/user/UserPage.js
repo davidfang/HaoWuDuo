@@ -31,8 +31,6 @@ export default class UserPage extends Component{
         },
     };
     render (){
-        console.log("宽度="+Dimensions.get('window').width+";高度="+Dimensions.get('window').height);
-        console.log("宽度="+Dimensions.get('screen').width+";高度="+Dimensions.get('screen').height);
         return (
             <View style={userStyle.viewStyle}>
                 <ImageBackground style={userStyle.topStyle} source={require('../../images/my_header_bg.png')}>

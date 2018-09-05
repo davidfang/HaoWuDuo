@@ -63,9 +63,6 @@ export default class Register extends Component{
             let formData = new FormData();
             formData.append('phone',this.state.phone);
             formData.append('authCodeToken',data.authToken);
-            post('tools/authCode')(formData).then(token=>{
-                console.log("the token is "+token);
-            })
         });
     }
     register(){
@@ -73,8 +70,8 @@ export default class Register extends Component{
         let formData = new FormData();
         formData.append("phone",this.state.phone);
         formData.append("password","xiaofei528");
-        formData.append("submitCode",this.state.code);
-        post("user/reg")(formData).then(data=>{
+        formData.append("nickName",'floadyun');
+        post("account/register")(formData).then(data=>{
             console.log('the data is '+data)
         });
     }

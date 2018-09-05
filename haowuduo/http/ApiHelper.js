@@ -4,7 +4,7 @@
 
 import apiCache from './ApiCache'
 
-const baseUrl = 'http://127.0.0.1:8000/';
+const baseUrl = 'http://192.168.0.197:8000/api/';
 
 const showLog = __DEV__;
 
@@ -27,15 +27,17 @@ const getFetch = (url, cached) => {
 /**
  * @param url 完整路径
  */
-const postFetch = url => jsonData => {
+const postFetch = url => fromData => {
   return fetch(url, {
     method: 'POST',
     headers: {
       Accept: '*/*',
       'Content-Type': 'multipart/form-data'
     },
-    body: jsonData
-  }).then(convertRespToJson).then(defaultAnalyse);
+    body:fromData
+  }).then(convertRespToJson).then(defaultAnalyse).catch((error) => {
+    console.warn('post error '+error)
+  });
 };
 
 //拼接参数
@@ -63,9 +65,7 @@ const get = cached => (path, data) => {
  * @param path 相对路径
  */
 export const post = path => data => {
-  // var jsonData = JSON.stringify(data);
   var url = baseUrl + path;
-  // console.log('the url is '+url+";the jsonData is "+jsonData)
   return loggerWrap(`POST  ${url}  ${data}`)(() => {
     return postFetch(url)(data);
   });
@@ -79,6 +79,7 @@ const loggerWrap = requestInfo => fetchFunc => {
   if (showLog) {
     let startTime = new Date().getTime();//开始请求时间
     return fetchFunc().then(result => {
+      console.log('the data result is '+result);
       console.log(`${requestInfo}  success  result = ${JSON.stringify(result)} cost time = ${new Date().getTime() - startTime}ms`);
       return result;
     }).catch(err => {
@@ -90,11 +91,12 @@ const loggerWrap = requestInfo => fetchFunc => {
 };
 
 const convertRespToJson = response => {
+  console.log('the response result is '+response);
   return response.json();
 };
 
 const defaultAnalyse = response => {
-  if(response.data){
+  if(response.code==200){
     return response.data;
   }
   return response;
