@@ -4,7 +4,7 @@
 
 import apiCache from './ApiCache'
 
-const baseUrl = 'http://192.168.0.197:8000/api/';
+const baseUrl = 'http://192.168.43.189:8000/api/';
 
 const showLog = __DEV__;
 

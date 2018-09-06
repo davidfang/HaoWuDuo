@@ -3,17 +3,28 @@ import {View,Button,Image,Text,StyleSheet,Dimensions,ImageBackground,TouchableNa
 import {scaleSize} from '../../utils/ScreenUtil';
 
 import {normalStyle} from '../NormalStyle';
+import {getFetchNeverCached} from '../../http/ApiHelper'
 
 const blackColor= "#282828";
 
 var navigation = null;
+let userInfo
 export default class UserPage extends Component{
 
     constructor(props){
         super(props);
         navigation = this.props.navigation;
+        this.state={
+            userInfo:''
+        }
     }
-
+    componentDidMount(){
+        getFetchNeverCached('account/getUserInfo',{phone: "18575683432"}).then(value=>{
+            if(value.code==200){
+                this.setState({userInfo:value.data})
+            }
+        })
+    }
     // 此处设置 Tab 的名称和一些样式，这里的会覆盖掉配置路由文件的样式，下面会讲
     static navigationOptions = {
         tabBarLabel: '我的',
@@ -49,8 +60,8 @@ export default class UserPage extends Component{
                             <Image style={{width:scaleSize(97),height:scaleSize(97)}} source={require('../../images/ic_devault_head.png') } ></Image>
                         </TouchableNativeFeedback>
                         <View style={{marginLeft: 10,}}>
-                            <Text style={{color:'white'}}>185****3432</Text>
-                            <Text style={{color:'white',marginTop:5,fontSize:10}}>ID:50554996</Text>
+                            <Text style={{color:'white'}}>{this.state.userInfo.phone}}</Text>
+                            <Text style={{color:'white',marginTop:5,fontSize:10}}>{this.state.userInfo.nickName}</Text>
                         </View>
                         <View style={{flex:1,flexDirection:'column',justifyContent:'flex-end'}}>
                             <Text style={{color:'white',fontSize:25,alignSelf:'flex-end'}}>0.00</Text>

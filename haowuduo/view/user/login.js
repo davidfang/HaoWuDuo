@@ -64,23 +64,23 @@ export default class Login extends Component{
         );
     };
     userTextChange(userData){
+        console.log('the userData is '+ userData)
         this.setState({phone:userData});
     }
     passwordTextChange(password){
         this.setState({password:password})
     }
     login(){
-        console.log('the phone is '+this.state.phone+";the password is "+this.state.password)
-        if(this.state.phone=''){
+        console.log('the phone is '+ this.state.phone)
+        if(this.state.phone==''){
             this.refs.toast.show('请输入手机号码')
             return
         }
-        if(this.state.password=''){
+        if(this.state.password==''){
             this.refs.toast.show('请输入密码')
             return
         }
         let formData = new FormData();
-        formData.append('phone',this.state.phone);
         formData.append('password',this.state.password);
         post('account/login')(formData).then(response=>{
             this.refs.toast.show(response.msg)
