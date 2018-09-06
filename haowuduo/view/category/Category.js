@@ -4,6 +4,8 @@
 import React, {Component} from 'react'
 import {View, Text, Image, TouchableOpacity, StyleSheet, FlatList, SectionList, Dimensions} from 'react-native'
 
+import {getFetchNeverCached} from '../../http/ApiHelper'
+
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
@@ -16,6 +18,7 @@ export default class CategoryList extends Component {
     this._flatList = null
     this._sectionList = null
     this.state = {
+      categoryData:null,
       selectedRootCate: 0
     }
   }
@@ -37,18 +40,24 @@ export default class CategoryList extends Component {
 };
   componentDidMount() {
     // 网络请求
+    getFetchNeverCached('product/getCategoryList').then(data=>{
+       for (var i=0;i<data.length;i++){ 
+          console.log('the name is '+data[i].categoryName)
+        }
+        this.setState({categoryData:data})
+    });
   }
-
   _renderItem = item => {
     let index = item.index
-    let title = item.item.title
+    let title = item.categoryName
+    console.log('the title is '+title)
     return (
       <TouchableOpacity
         key={index}
         style={[{alignItems: 'center', justifyContent: 'center', width: 100, height: 44}, this.state.selectedRootCate === index ? {backgroundColor: '#F5F5F5', borderLeftWidth: 3, borderLeftColor: 'red'} : {backgroundColor: 'white'}]}
         onPress={() => {
           setTimeout(() => {
-            (CateData.data.length - index) * 45 > height - 65 ? this._flatList.scrollToOffset({animated: true, offset: index * 45}) : null
+            (this.state.categoryData.length - index) * 45 > height - 65 ? this._flatList.scrollToOffset({animated: true, offset: index * 45}) : null
             this._sectionList.scrollToLocation({itemIndex: 0, sectionIndex: 0, animated: true, viewOffset: 20})
           }, 100)
           this.setState({selectedRootCate: index})
@@ -60,15 +69,15 @@ export default class CategoryList extends Component {
   }
 
   renderRootCate() {
-    let data = []
-    CateData.data.map((item, index) => {
-      data.push({key: index, title: item.firstCateName})
-    })
+    // let data = []
+    // CateData.data.map((item, index) => {
+    //   data.push({key: index, title: item.firstCateName})
+    // })
     return (
       <View style={{backgroundColor: '#F5F5F5'}}>
         <FlatList
           ref={flatList => this._flatList = flatList}
-          data={data}
+          data={this.state.categoryData}
           ListHeaderComponent={() => (<View/>)}
           ListFooterComponent={() => (<View/>)}
           ItemSeparatorComponent={() => <View style={{height:1, backgroundColor:'#F5F5F5'}}/>}

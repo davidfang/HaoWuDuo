@@ -4,7 +4,8 @@ import {Image,TextInput,View,Button,Text} from 'react-native';
 import {scaleSize} from '../../utils/ScreenUtil';
 import {normalStyle} from '../NormalStyle';
 import {post} from '../../http/ApiHelper';
-import {getFetchNeverCached} from '../../http/ApiHelper';
+
+import Toast, {DURATION} from 'react-native-easy-toast'
 
 export default class Register extends Component{
     constructor(props){
@@ -40,13 +41,14 @@ export default class Register extends Component{
                         </View>
                     </View>
                     <View style={normalStyle.lineStyle}></View>
-                    <View style={{marginTop:scaleSize(60)}}>
-                    <Button title='确定' onPress={()=>{
-                        this.register();
-                    }}></Button>
-                    <Text style={{marginTop:scaleSize(10)}}>注册代表您已同意《好物多注册协议》</Text>
+                    <View style={{height:scaleSize(88),marginTop:scaleSize(60)}}>
+                        <Button title='确定' onPress={()=>{
+                            this.register();
+                        }}></Button>
                     </View>
+                    <Text style={{marginTop:scaleSize(10)}}>注册代表您已同意《好物多注册协议》</Text>
                 </View>
+                <Toast ref="toast" position='center'/>
             </View>
         )};
     userChangeText(userData){
@@ -59,20 +61,21 @@ export default class Register extends Component{
      * 获取验证码
      */
     getAuthCode(){
-        getFetchNeverCached('tools/authCodeToken').then(data=>{
-            let formData = new FormData();
-            formData.append('phone',this.state.phone);
-            formData.append('authCodeToken',data.authToken);
-        });
+        this.refs.toast.show('未上线');
     }
     register(){
-        console.log('the phone is '+this.state.phone+";the code is "+this.state.code);
-        let formData = new FormData();
-        formData.append("phone",this.state.phone);
-        formData.append("password","xiaofei528");
-        formData.append("nickName",'floadyun');
-        post("account/register")(formData).then(data=>{
-            console.log('the data is '+data)
-        });
+        if(this.state.phone==''){
+            this.refs.toast.show('请输入手机号码');
+            return
+        }
+        if(this.state.code==''){
+            this.refs.toast.show('请输入验证码')
+            return
+        }
+        console.log('the phone is '+this.state.phone)
+        this.props.navigation.navigate('RegisterPassword',{
+            phone:this.state.phone,
+            code:this.state.code
+        })
     }
 }

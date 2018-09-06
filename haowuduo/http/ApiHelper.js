@@ -79,7 +79,6 @@ const loggerWrap = requestInfo => fetchFunc => {
   if (showLog) {
     let startTime = new Date().getTime();//开始请求时间
     return fetchFunc().then(result => {
-      console.log('the data result is '+result);
       console.log(`${requestInfo}  success  result = ${JSON.stringify(result)} cost time = ${new Date().getTime() - startTime}ms`);
       return result;
     }).catch(err => {
@@ -96,10 +95,7 @@ const convertRespToJson = response => {
 };
 
 const defaultAnalyse = response => {
-  if(response.code==200){
-    return response.data;
-  }
-  return response;
+    return response;
 };
 
 export const getFetchFromCache = get(true);//缓存
