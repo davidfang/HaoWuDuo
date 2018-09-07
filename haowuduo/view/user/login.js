@@ -5,6 +5,7 @@ import {scaleSize} from '../../utils/ScreenUtil';
 
 import {post} from '../../http/ApiHelper';
 import Toast, {DURATION} from 'react-native-easy-toast'
+import storage from 'react-native-simple-store';
 
 export default class Login extends Component{
 
@@ -81,10 +82,13 @@ export default class Login extends Component{
             return
         }
         let formData = new FormData();
+        formData.append('phone',this.state.phone)
         formData.append('password',this.state.password);
+        storage.save('phone',{phone:this.state.phone})
         post('account/login')(formData).then(response=>{
             this.refs.toast.show(response.msg)
             if(response.code==200){
+                storage.save('token',{token:response.data})
                 this.props.navigation.goBack()
             }
         });

@@ -4,7 +4,7 @@
 
 import apiCache from './ApiCache'
 
-const baseUrl = 'http://192.168.43.189:8000/api/';
+const baseUrl = 'http://192.168.0.198:8000/api/';
 
 const showLog = __DEV__;
 
@@ -51,10 +51,17 @@ const getParam = data => {
  * @param cached 是否优先本地缓存
  * @param path 相对路径
  */
-const get = cached => (path, data) => {
+const get = cached => (path, params) => {
   let url = `${baseUrl}${path}`;
-  if (data) {
-    url.append(`?${getParam(data)}`)
+  if (params) {
+    let paramsArray = [];
+     //拼接参数
+     Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]))
+     if (url.search(/\?/) === -1) {
+         url += '?' + paramsArray.join('&')
+     } else {
+         url += '&' + paramsArray.join('&')
+     }
   }
   return loggerWrap(`GET  ${url}`)(() => {
     return getFetch(url, cached);
@@ -90,7 +97,6 @@ const loggerWrap = requestInfo => fetchFunc => {
 };
 
 const convertRespToJson = response => {
-  console.log('the response result is '+response);
   return response.json();
 };
 

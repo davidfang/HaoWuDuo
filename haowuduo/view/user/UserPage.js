@@ -4,6 +4,7 @@ import {scaleSize} from '../../utils/ScreenUtil';
 
 import {normalStyle} from '../NormalStyle';
 import {getFetchNeverCached} from '../../http/ApiHelper'
+import storage from 'react-native-simple-store';
 
 const blackColor= "#282828";
 
@@ -19,10 +20,12 @@ export default class UserPage extends Component{
         }
     }
     componentDidMount(){
-        getFetchNeverCached('account/getUserInfo',{phone: "18575683432"}).then(value=>{
-            if(value.code==200){
-                this.setState({userInfo:value.data})
-            }
+        storage.get('token').then(token=>{
+            getFetchNeverCached('account/getUserInfo',token).then(value=>{
+                if(value.code==200){
+                    this.setState({userInfo:value.data})
+                }
+            })
         })
     }
     // 此处设置 Tab 的名称和一些样式，这里的会覆盖掉配置路由文件的样式，下面会讲
@@ -57,11 +60,12 @@ export default class UserPage extends Component{
                     </View>
                     <View style={{flexDirection:'row',marginTop:30,paddingLeft:15,paddingRight:15,alignItems:'center'}}>
                         <TouchableNativeFeedback onPress={this.avatorClick }>
-                            <Image style={{width:scaleSize(97),height:scaleSize(97)}} source={require('../../images/ic_devault_head.png') } ></Image>
+                            <Image style={{width:scaleSize(97),height:scaleSize(97),borderRadius:scaleSize(100)}} 
+                                source={{uri:this.state.userInfo.avatar_url?this.state.userInfo.avatar_url:'https://www.w3cschool.cn/attachments/cover/cover_react.png'}} ></Image>
                         </TouchableNativeFeedback>
                         <View style={{marginLeft: 10,}}>
-                            <Text style={{color:'white'}}>{this.state.userInfo.phone}}</Text>
-                            <Text style={{color:'white',marginTop:5,fontSize:10}}>{this.state.userInfo.nickName}</Text>
+                            <Text style={{color:'white'}}>{this.state.userInfo.phone}</Text>
+                            <Text style={{color:'white',marginTop:5,fontSize:10}}>{this.state.userInfo.nick_name}</Text>
                         </View>
                         <View style={{flex:1,flexDirection:'column',justifyContent:'flex-end'}}>
                             <Text style={{color:'white',fontSize:25,alignSelf:'flex-end'}}>0.00</Text>
@@ -116,7 +120,6 @@ export default class UserPage extends Component{
     }
     avatorClick(params) {
         navigation.navigate("Login")
-        console.log('您点击了头像...');
     }
 }
 const userStyle = StyleSheet.create({

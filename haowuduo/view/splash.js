@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Image,Dimensions,StyleSheet} from 'react-native';
 
+import { NavigationActions } from 'react-navigation';
+
 export default class Splash extends Component{
     render (){
         return (
@@ -10,7 +12,13 @@ export default class Splash extends Component{
     componentDidMount(){
         this.timer = setTimeout(()=>{
             console.log('跳转至主页');
-            this.props.navigation.navigate('Main');
+            const navigateAction = NavigationActions.navigate({
+                routeName: 'Main',
+                params: {},
+                action: NavigationActions.navigate({ routeName: 'Main' }),
+              });
+              
+              this.props.navigation.dispatch(navigateAction);
         },2000);
     }
     componentWillUnmount(){
