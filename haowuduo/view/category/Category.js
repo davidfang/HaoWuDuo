@@ -24,7 +24,7 @@ export default class CategoryList extends Component {
   }
  // 此处设置 Tab 的名称和一些样式，这里的会覆盖掉配置路由文件的样式，下面会讲
  static navigationOptions = {
-  tabBarLabel: '首页',
+  tabBarLabel: '分类',
   tabBarIcon: ({focused}) => {
       if (focused) {
           return (
@@ -41,16 +41,12 @@ export default class CategoryList extends Component {
   componentDidMount() {
     // 网络请求
     getFetchNeverCached('product/getCategoryList').then(data=>{
-       for (var i=0;i<data.length;i++){ 
-          console.log('the name is '+data[i].categoryName)
-        }
         this.setState({categoryData:data})
     });
   }
   _renderItem = item => {
     let index = item.index
     let title = item.categoryName
-    console.log('the title is '+title)
     return (
       <TouchableOpacity
         key={index}
@@ -83,8 +79,7 @@ export default class CategoryList extends Component {
           ItemSeparatorComponent={() => <View style={{height:1, backgroundColor:'#F5F5F5'}}/>}
           renderItem={this._renderItem}
           onEndReachedThreshold={20}
-          showsVerticalScrollIndicator={false}
-          >
+          showsVerticalScrollIndicator={false}>
         </FlatList>
       </View>
     )

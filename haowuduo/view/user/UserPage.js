@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View,Button,Image,Text,StyleSheet,Dimensions,ImageBackground,TouchableNativeFeedback} from 'react-native';
+import {View,ScrollView,Image,Text,StyleSheet,Dimensions,ImageBackground,TouchableNativeFeedback} from 'react-native';
 import {scaleSize} from '../../utils/ScreenUtil';
 
 import {normalStyle} from '../NormalStyle';
@@ -46,6 +46,7 @@ export default class UserPage extends Component{
     };
     render (){
         return (
+            <ScrollView alwaysBounceVertical>
             <View style={userStyle.viewStyle}>
                 <ImageBackground style={userStyle.topStyle} source={require('../../images/my_header_bg.png')}>
                     <View style={{flexDirection:'row',justifyContent:'center',marginTop:scaleSize(30),alignItems:'center',position:'relative'}}>
@@ -112,7 +113,47 @@ export default class UserPage extends Component{
                         </View>
                     </View>
                 </View>
+                <View style={{flexDirection:'row',justifyContent:'space-between',height:scaleSize(88),alignItems:'center',
+                    marginTop:scaleSize(20),backgroundColor:'#fff',paddingLeft:scaleSize(30),paddingRight:scaleSize(30)}}>
+                        <Text style={normalStyle.blackText}>成为合伙人</Text>
+                        <Text style={{color:'#C7C7C7'}}>享最高80%奖励 ></Text>
+                </View>
+                <View style={{backgroundColor:"#fff",marginTop:scaleSize(20)}}>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',height:scaleSize(88),alignItems:'center',paddingLeft:scaleSize(30),paddingRight:scaleSize(30)}}>
+                        <View style={{flexDirection:'row',alignItems:'center'}}>
+                            <Image style={{width:scaleSize(60),height:scaleSize(60)}} source={require('../../images/me_btn_gonggao.png')}></Image>
+                            <Text style={{marginLeft:scaleSize(20),color:blackColor}}>邀请好友</Text>
+                        </View>
+                        <Image style={{width:scaleSize(15),height:scaleSize(25)}} source={require('../../images/ic_mine_come.png')}></Image>
+                    </View>
+                    <View style={normalStyle.lineStyle}></View>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',height:scaleSize(88),alignItems:'center',paddingLeft:scaleSize(30),paddingRight:scaleSize(30)}}>
+                        <View style={{flexDirection:'row',alignItems:'center'}}>
+                            <Image style={{width:scaleSize(60),height:scaleSize(60)}} source={require('../../images/me_btn_gonggao.png')}></Image>
+                            <Text style={{marginLeft:scaleSize(20),color:blackColor}}>邀请好友</Text>
+                        </View>
+                        <Image style={{width:scaleSize(15),height:scaleSize(25)}} source={require('../../images/ic_mine_come.png')}></Image>
+                    </View>
+                    <View style={normalStyle.lineStyle}></View>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',height:scaleSize(88),alignItems:'center',paddingLeft:scaleSize(30),paddingRight:scaleSize(30)}}>
+                        <View style={{flexDirection:'row',alignItems:'center'}}>
+                            <Image style={{width:scaleSize(60),height:scaleSize(60)}} source={require('../../images/me_btn_gonggao.png')}></Image>
+                            <Text style={{marginLeft:scaleSize(20),color:blackColor}}>邀请好友</Text>
+                        </View>
+                        <Image style={{width:scaleSize(15),height:scaleSize(25)}} source={require('../../images/ic_mine_come.png')}></Image>
+                    </View>
+                    <View style={normalStyle.lineStyle}></View>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',height:scaleSize(88),alignItems:'center',paddingLeft:scaleSize(30),paddingRight:scaleSize(30)}}>
+                        <View style={{flexDirection:'row',alignItems:'center'}}>
+                            <Image style={{width:scaleSize(60),height:scaleSize(60)}} source={require('../../images/me_btn_gonggao.png')}></Image>
+                            <Text style={{marginLeft:scaleSize(20),color:blackColor}}>邀请好友</Text>
+                        </View>
+                        <Image style={{width:scaleSize(15),height:scaleSize(25)}} source={require('../../images/ic_mine_come.png')}></Image>
+                    </View>
+                    <View style={normalStyle.lineStyle}></View>
+                </View>
             </View>
+            </ScrollView>
         );
     }
     settingClick(){

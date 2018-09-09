@@ -9,16 +9,22 @@ import {
 import ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-view'
 
 import HomeTab from './HomeTab';
+import {getFetchNeverCached} from '../../http/ApiHelper'
+import {scaleSize} from '../../utils/ScreenUtil'
 
 export default class MinePage extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            label: ['推荐', '新品', '居家', '餐厨', '配件', '服装', '电器', '洗护', '杂货', '饮食', '婴童', '志趣'],
+            tabData: [],
         };
     }
-
+    componentDidMount(){
+        getFetchNeverCached('product/getHomeCategory').then(resoponse=>{
+            this.setState({tabData:resoponse.data})
+        })
+    }
     // 此处设置 Tab 的名称和一些样式，这里的会覆盖掉配置路由文件的样式，下面会讲
     static navigationOptions = {
         tabBarLabel: '首页',
@@ -37,10 +43,10 @@ export default class MinePage extends Component {
     };
     render() {
         const { navigate } = this.props.navigation;
-        let label = this.state.label
+        let label = this.state.tabData
         return (
             <View style={styles.container}>
-                <View style={{flexDirection:"row",height:50}}>
+                <View style={{flexDirection:"row",height:scaleSize(80),backgroundColor:'white'}}>
                     <TextInput style={styles.inputStyle} placeholder="粘贴宝宝链接，先领劵后购买" underlineColorAndroid="transparent"></TextInput>
                 </View>
                 <ScrollableTabView
@@ -52,7 +58,7 @@ export default class MinePage extends Component {
                         tabBarUnderlineStyle={{backgroundColor:'#F32F19'}}>
                     {
                          label.map((item, index) => {
-                             return (<HomeTab tabLabel={item} key={index}/>)
+                             return (<HomeTab tabLabel={item.typeName} typeId={item.typeId}/>)
                          })
                      }
                 </ScrollableTabView>
@@ -68,7 +74,7 @@ const styles = StyleSheet.create({
     },
     inputStyle:{
         width:Dimensions.get('window').width,
-        height:50,
+        height:scaleSize(50),
         backgroundColor:'#F3F3F3',
         padding: 0,
         textAlign:'center',   
