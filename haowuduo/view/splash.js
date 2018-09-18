@@ -12,13 +12,8 @@ export default class Splash extends Component{
     componentDidMount(){
         this.timer = setTimeout(()=>{
             console.log('跳转至主页');
-            const navigateAction = NavigationActions.navigate({
-                routeName: 'Main',
-                params: {},
-                action: NavigationActions.navigate({ routeName: 'Main' }),
-              });
-              
-              this.props.navigation.dispatch(navigateAction);
+           
+            this.props.navigation.replace('Main');
         },2000);
     }
     componentWillUnmount(){
